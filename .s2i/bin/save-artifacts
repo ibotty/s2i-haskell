@@ -9,4 +9,4 @@
 #
 # tar cf - <list of files and folders>
 
-tar cf - .stack
+tar cf - .stack .stack-work
