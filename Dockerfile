@@ -18,10 +18,11 @@ RUN curl -sSL https://s3.amazonaws.com/download.fpcomplete.com/centos/7/fpco.rep
 
 COPY ./.s2i/bin/ ${STI_SCRIPTS_PATH}
 
-# TODO: Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root
 
 USER 1001
+
+RUN stack setup
 
 EXPOSE 8080
 

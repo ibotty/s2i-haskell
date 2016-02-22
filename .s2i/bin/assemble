@@ -14,7 +14,10 @@ if [ "$1" = "-h" ]; then
 fi
 
 stack_build() {
+    echo "---> Building application from source"
+    stack setup
     stack build -j4
+    stack install
 }
 
 # Restore artifacts from the previous build (if they exist).
@@ -28,7 +31,6 @@ echo "---> Installing application source"
 cp -Rf /tmp/src/. ./
 
 if [ -f stack.yaml ]; then
-    echo "---> Building application from source"
     stack_build
 else
     echo "---> Trying to generate stack file"
