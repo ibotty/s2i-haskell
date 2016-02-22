@@ -13,6 +13,10 @@ if [ "$1" = "-h" ]; then
 	exec /usr/local/s2i/usage
 fi
 
+stack_build() {
+    stack build -j4
+}
+
 # Restore artifacts from the previous build (if they exist).
 #
 if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
@@ -23,5 +27,12 @@ fi
 echo "---> Installing application source"
 cp -Rf /tmp/src/. ./
 
-echo "---> Building application from source"
-# TODO: Add build steps for your application, eg npm install, bundle install
+if [ -f stack.yaml ]; then
+    echo "---> Building application from source"
+    stack_build
+else
+    echo "---> Trying to generate stack file"
+    stack init
+
+    stack_build
+fi
