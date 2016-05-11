@@ -13,9 +13,6 @@ RUN curl -sSL https://s3.amazonaws.com/download.fpcomplete.com/centos/7/fpco.rep
  && yum install -y stack \
  && yum clean all -y
 
-# TODO (optional): Copy the builder files into /opt/app-root
-# COPY ./<builder_folder>/ /opt/app-root/
-
 COPY ./.s2i/bin/ ${STI_SCRIPTS_PATH}
 
 RUN chown -R 1001:1001 /opt/app-root

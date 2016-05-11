@@ -8,4 +8,5 @@
 #
 
 # TODO!
-exec stack run
+export PATH=$HOME/.local/bin:$PATH
+exec stack exec
